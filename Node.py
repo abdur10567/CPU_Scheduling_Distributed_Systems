@@ -2,19 +2,22 @@ from Process import Process
 
 
 class Node:
-    def __init__(self, algoChoice, overLoadedThreshold):
+    def __init__(self, nodeNum, algoChoice, overLoadedThreshold):
         self.localQueue = []
         self.runningProcessRemainingTime = 0
         self.totalRunningTime = 0
         self.idleTime = 0
         self.algoChoice = algoChoice
         self.overLoadedThreshold = overLoadedThreshold
+        self.currentRunningProcessId = None
+        self.nodeNum = nodeNum
 
     def addProcessToQueue(self, process):
         self.localQueue.append(process)
 
     def nextProcessInQueue(self):
         process = self.localQueue.pop(0)
+        self.currentRunningProcessId = process.get_Pid()
         self.runningProcessRemainingTime = process.get_RemainBurstTime()
 
     def schedule(self):
@@ -41,6 +44,7 @@ class Node:
     # might need some changes.
     def advanceOnStep(self):
         if self.runningProcessRemainingTime == 0:
+            print("Finished Process #: "+self.currentRunningProcessId+" on node#: "+self.nodeNum)
             if self.isQueueEmpty():
                 self.idleTime += 1
                 self.totalRunningTime += 1

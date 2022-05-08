@@ -25,8 +25,8 @@ def hardCodedProcesses():
 
 
 def nodeCreation(numOfNodes):
-    a = Node(0, 50)
-    b = Node(0, 30)
+    a = Node(1, 0, 50)
+    b = Node(2, 0, 30)
     c = [a, b]
     return c
 
