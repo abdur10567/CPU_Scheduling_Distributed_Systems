@@ -78,6 +78,7 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
                 pToAddToNodeQueue = globalQueue.pop(0)
                 nodeToAddProcessTo = requestQueue.pop(0)
                 nodeToAddProcessTo.addProcessToQueue(pToAddToNodeQueue)
+                print("Process #: "+pToAddToNodeQueue.get_Pid()+" moved from global queue to local queue of node #"+nodeToAddProcessTo.nodeNum)
             else:
                 break
 
