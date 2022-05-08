@@ -1,4 +1,6 @@
 from Process import Process
+
+
 class Node:
     def __init__(self, algoChoice, overLoadedThreshold):
         self.localQueue = []
@@ -16,10 +18,25 @@ class Node:
         self.runningProcessRemainingTime = process.get_RemainBurstTime()
 
     def schedule(self):
+        # FCFS, no process scheduling/sorting needs to be done
         if self.algoChoice == 0:
-            a = 2
-        else:
-            a = 1
+            pass
+        # SJF, sort processes in queue by shortest burst time
+        elif self.algoChoice == 1:
+            for i in range(0, len(self.localQueue)):
+                for j in range(i + 1, len(self.localQueue)):
+                    if self.localQueue[i].get_BurstTime > self.localQueue[j].get_BurstTime:
+                        tempProcess = self.localQueue[i];
+                        self.localQueue[i] = self.localQueue[j]
+                        self.localQueue[j] = tempProcess
+        # priority, sort processes in queue by highest # priority first
+        elif self.algoChoice == 2:
+            for i in range(0, len(self.localQueue)):
+                for j in range(i + 1, len(self.localQueue)):
+                    if self.localQueue[i].get_Priority < self.localQueue[j].get_Priority:
+                        tempProcess = self.localQueue[i];
+                        self.localQueue[i] = self.localQueue[j]
+                        self.localQueue[j] = tempProcess
 
     # might need some changes.
     def advanceOnStep(self):

@@ -91,6 +91,8 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
                     if node.runningProcessRemainingTime != 0:
                         exitMainLoop = False
 
+            #make sure processes on the node's local queue are scheduled in right order
+            node.schedule()
             #advances processes on node
             node.advanceOnStep()
 
