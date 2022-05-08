@@ -44,7 +44,8 @@ class Node:
     # might need some changes.
     def advanceOnStep(self):
         if self.runningProcessRemainingTime == 0:
-            print("Finished Process #: "+self.currentRunningProcessId+" on node#: "+self.nodeNum)
+            if self.currentRunningProcessId is not None:
+                print("Finished Process #:",self.currentRunningProcessId," on node#:",self.nodeNum)
             if self.isQueueEmpty():
                 self.idleTime += 1
                 self.totalRunningTime += 1
@@ -73,3 +74,4 @@ class Node:
         for i in self.localQueue:
             load += i.get_BurstTime()
         load += self.runningProcessRemainingTime
+        return load
