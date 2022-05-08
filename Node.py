@@ -1,5 +1,5 @@
 from Process import Process
-class node:
+class Node:
     def __init__(self, algoChoice, overLoadedThreshold):
         self.localQueue = []
         self.runningProcessRemainingTime = 0
@@ -12,7 +12,7 @@ class node:
         self.localQueue.append(process)
 
     def nextProcessInQueue(self):
-        process = self.localQueue.pop()
+        process = self.localQueue.pop(0)
         self.runningProcessRemainingTime = process.get_RemainBurstTime()
 
     def schedule(self):
