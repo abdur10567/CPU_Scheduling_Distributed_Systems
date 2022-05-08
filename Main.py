@@ -78,7 +78,7 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
                 pToAddToNodeQueue = globalQueue.pop(0)
                 nodeToAddProcessTo = requestQueue.pop(0)
                 nodeToAddProcessTo.addProcessToQueue(pToAddToNodeQueue)
-                print("Process #: "+pToAddToNodeQueue.get_Pid()+" moved from global queue to local queue of node #"+nodeToAddProcessTo.nodeNum)
+                print("Process #: "+pToAddToNodeQueue.get_Pid()+" moved from global queue to local queue of node #: "+nodeToAddProcessTo.nodeNum)
             else:
                 break
 
@@ -99,13 +99,17 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
 
             # check if any node is underloaded. If it is, make it request a process from global queue
             if not node.isOverLoaded():
+                print("Node #: " + node.nodeNum + "has made a request for a process from global queue")
                 if len(globalQueue) != 0:
                     pToAddToNodeQueue = globalQueue.pop(0)
                     node.addProcessToQueue(pToAddToNodeQueue)
+                    print("Process #: " + pToAddToNodeQueue.get_Pid() + " moved from global queue to local queue of node #: " + nodeToAddProcessTo.nodeNum)
                 else:
                     # if global queue is empty, add node request to queue after checking if a request was already made
                     if node not in requestQueue:
                         requestQueue.append(node)
+                        print("Node #: " + node.nodeNum + "'s request for a process cannot be fulfilled as the global queue is empty. Request added to request queue.")
+
 
         # check if all processing is done, or the clock needs to keep going
         if exitMainLoop:
