@@ -27,6 +27,10 @@ class Node:
             if self.isQueueEmpty():
                 self.idleTime += 1
                 self.totalRunningTime += 1
+            else:
+                self.nextProcessInQueue()
+                self.totalRunningTime += 1
+                self.runningProcessRemainingTime -= 1
         else:
             self.totalRunningTime += 1
             self.runningProcessRemainingTime -= 1
