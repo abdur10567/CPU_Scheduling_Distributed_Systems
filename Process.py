@@ -1,10 +1,9 @@
 class Process:
-    def __init__(self, pid, arrivalTime, burstTime, priority, numThreadsRequired):
+    def __init__(self, pid, arrivalTime, burstTime, priority):
         self.pid = pid
         self.arrivalTime = arrivalTime
         self.burstTime = burstTime
         self.priority = priority
-        self.numThreadRequired = numThreadsRequired
         self.remainingBurstTime = burstTime
         self.waitTime = None
         self.turnAroundTime = None

@@ -28,7 +28,7 @@ class Node:
         elif self.algoChoice == 1:
             for i in range(0, len(self.localQueue)):
                 for j in range(i + 1, len(self.localQueue)):
-                    if self.localQueue[i].get_BurstTime > self.localQueue[j].get_BurstTime:
+                    if self.localQueue[i].get_BurstTime() > self.localQueue[j].get_BurstTime():
                         tempProcess = self.localQueue[i];
                         self.localQueue[i] = self.localQueue[j]
                         self.localQueue[j] = tempProcess
@@ -36,7 +36,7 @@ class Node:
         elif self.algoChoice == 2:
             for i in range(0, len(self.localQueue)):
                 for j in range(i + 1, len(self.localQueue)):
-                    if self.localQueue[i].get_Priority < self.localQueue[j].get_Priority:
+                    if self.localQueue[i].get_Priority() < self.localQueue[j].get_Priority():
                         tempProcess = self.localQueue[i];
                         self.localQueue[i] = self.localQueue[j]
                         self.localQueue[j] = tempProcess

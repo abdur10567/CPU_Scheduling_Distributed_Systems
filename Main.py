@@ -4,14 +4,14 @@ import random
 
 
 def hardCodedProcesses():
-    p1 = Process(1, 0, 24, 0, None)
-    p2 = Process(2, 0, 27, 0, None)
-    p3 = Process(3, 10, 40, 0, None)
-    p4 = Process(4, 0, 14, 0, None)
-    p5 = Process(5, 0, 25, 0, None)
-    p6 = Process(6, 4, 18, 0, None)
-    p7 = Process(7, 0, 17, 0, None)
-    p8 = Process(8, 15, 32, 0, None)
+    p1 = Process(1, 0, 24, 0)
+    p2 = Process(2, 0, 27, 0)
+    p3 = Process(3, 10, 40, 0)
+    p4 = Process(4, 0, 14, 0)
+    p5 = Process(5, 0, 25, 0)
+    p6 = Process(6, 4, 18, 0)
+    p7 = Process(7, 0, 17, 0)
+    p8 = Process(8, 15, 32, 0)
     processList = []
     processList.append(p1)
     processList.append(p2)
@@ -30,16 +30,17 @@ def RandomProcesses(count):
     lowestPriority = 10
 
     for i in range(1,count):
-        p = Process(i,random.randint(0,latestArrival),random.randint(1,longestBurst),random.randint(1,lowestPriority),None)
+        p = Process(i,random.randint(0,latestArrival),random.randint(1,longestBurst),random.randint(1,lowestPriority))
         processList.append(p)
 
     return processList
 
 def nodeCreation(numOfNodes):
-    a = Node(1, 0, 50)
-    b = Node(2, 0, 30)
-    c = [a, b]
-    return c
+    nodeArray = []
+    for i in range(1,numOfNodes):
+        n = Node(i,random.randint(0,2),random.randint(30,50))
+        nodeArray.append(n)
+    return nodeArray
 
 
 def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
@@ -136,8 +137,8 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
 def main():
     # create some hard coded processes.
     
-    listOfProcesses = hardCodedProcesses()
-    #listOfProcesses = RandomProcesses(100)
+    #listOfProcesses = hardCodedProcesses()
+    listOfProcesses = RandomProcesses(100)
 
     # decide how many nodes to create and return an array of them ( can randomize the parameter here)
     arrayOfNodes = nodeCreation(2)
