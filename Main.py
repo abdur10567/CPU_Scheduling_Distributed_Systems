@@ -23,6 +23,17 @@ def hardCodedProcesses():
     processList.append(p8)
     return processList
 
+def RandomProcesses(count):
+    processList = []
+    latestArrival = 5
+    longestBurst = 50
+    lowestPriority = 10
+
+    for i in range(1,count):
+        p = Process(i,random.randint(0,latestArrival),random.randint(1,longestBurst),random.randint(1,lowestPriority),None)
+        processList.append(p)
+
+    return processList
 
 def nodeCreation(numOfNodes):
     a = Node(1, 0, 50)
@@ -95,6 +106,7 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
 
             # make sure processes on the node's local queue are scheduled in right order
             node.schedule()
+
             # advances processes on node
             node.advanceOnStep()
 
@@ -123,7 +135,10 @@ def centralQueueAlgorithm(listOfProcesses, arrayOfNodes):
 
 def main():
     # create some hard coded processes.
+    
     listOfProcesses = hardCodedProcesses()
+    #listOfProcesses = RandomProcesses(100)
+
     # decide how many nodes to create and return an array of them ( can randomize the parameter here)
     arrayOfNodes = nodeCreation(2)
 
